@@ -8,11 +8,13 @@ export class IsNomeDeusuarioUnicoConstraint implements ValidatorConstraintInterf
     constructor(private usuarioService: UsuarioService) {}
 
     validate(nomeDeUsuario: string, validationArguments?: ValidationArguments): boolean | Promise<boolean> {
-        return !!!this.usuarioService.buscaPorNomeDeUsuario(nomeDeUsuario);
+        const usuario = this.usuarioService.buscaPorNomeDeUsuario(nomeDeUsuario);
+
+        return !!!usuario;
     }
 }
 
-export function IsNomeDeusuarioUnico(validationOptions?: ValidationOptions) {
+export function IsNomeDeusuarioUnico(validationOptions?: ValidationOptions): (object: Object, propertyName: string) => void {
     return function (object: Object, propertyName: string) {
         registerDecorator({
             target: object.constructor,

@@ -19,7 +19,6 @@ export class UsuarioService {
 
         return usuario;
     }
-
     buscaPorNomeDeUsuario(nomeDeUsuario: string): Usuario {
         return this.usuarios.find(usuario => usuario.nomeDeUsuario === nomeDeUsuario);
     }
